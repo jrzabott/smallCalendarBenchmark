@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +57,14 @@ public class Main {
         YearMonth yearMonth = YearMonth.of(aYear, aMonth);
         long startTime = yearMonth.atDay(1).atStartOfDay(ZoneId.systemDefault()).minusNanos(1).toInstant().toEpochMilli();
         long endTime = yearMonth.plusMonths(1).atDay(1).atStartOfDay(ZoneId.systemDefault()).minusNanos(1).toInstant().toEpochMilli();
+
+        return new Result(aNumber, startTime, endTime);
+    }
+
+    public static Result createAnObjNewJavaTimeAPIMinusMillis(int aNumber, int aYear, int aMonth) {
+        YearMonth yearMonth = YearMonth.of(aYear, aMonth);
+        long startTime = yearMonth.atDay(1).atStartOfDay(ZoneId.systemDefault()).minus(1, ChronoUnit.MILLIS).toInstant().toEpochMilli();
+        long endTime = yearMonth.plusMonths(1).atDay(1).atStartOfDay(ZoneId.systemDefault()).minus(1, ChronoUnit.MILLIS).toInstant().toEpochMilli();
 
         return new Result(aNumber, startTime, endTime);
     }

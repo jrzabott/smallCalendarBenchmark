@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @SuppressWarnings("unused")
 @BenchmarkMode({Mode.Throughput, Mode.AverageTime, Mode.SampleTime})
 @State(Scope.Benchmark)
-@OutputTimeUnit(java.util.concurrent.TimeUnit.MILLISECONDS)
+// @OutputTimeUnit(java.util.concurrent.TimeUnit.MILLISECONDS)
 @Warmup(iterations = 5, batchSize = 5_000)
 @Fork(value = 2)
 public class MainBenchmark {
@@ -61,5 +61,10 @@ public class MainBenchmark {
     @Benchmark
     public void benchmarkCreateAnObjNewJavaTimeAPIMinusNano(Blackhole blackhole) {
         blackhole.consume(Main.createAnObjNewJavaTimeAPIMinusNano(number, year, month));
+    }
+
+    @Benchmark
+    public void benchmarkCreateAnObjNewJavaTimeAPIMinusMillis(Blackhole blackhole) {
+        blackhole.consume(Main.createAnObjNewJavaTimeAPIMinusMillis(number, year, month));
     }
 }
