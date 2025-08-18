@@ -54,17 +54,29 @@ public class MainBenchmark {
     }
 
     @Benchmark
-    public void benchmarkCreateAndObjUsingMemoization(Blackhole blackhole) {
-        blackhole.consume(Main.createAndObjUsingMemoization(number, year, month));
+    public void benchmarkCreateAndObjUsingMemoizationInMap(Blackhole blackhole) {
+        blackhole.consume(Main.createAndObjUsingMemoizationInMap(number, year, month));
     }
 
-    @Benchmark
+    // This approach is bad because is worse than my first approach
+    // @Benchmark
     public void benchmarkCreateAnObjNewJavaTimeAPIMinusNano(Blackhole blackhole) {
         blackhole.consume(Main.createAnObjNewJavaTimeAPIMinusNano(number, year, month));
     }
 
-    @Benchmark
+    // This approach is bad because is worse than my first approach
+    // @Benchmark
     public void benchmarkCreateAnObjNewJavaTimeAPIMinusMillis(Blackhole blackhole) {
         blackhole.consume(Main.createAnObjNewJavaTimeAPIMinusMillis(number, year, month));
+    }
+
+    @Benchmark
+    public void benchmarkCreateAnObjNewJavaTimeAPIUsingMillisMath(Blackhole blackhole) {
+        blackhole.consume(Main.createAnObjNewJavaTimeAPIUsingMillisMath(number, year, month));
+    }
+
+    @Benchmark
+    public void benchmarkCreateAnObjUsingMemoizationInArray(Blackhole blackhole) {
+        blackhole.consume(Main.createAnObjUsingMemoizationInArray(number, year, month));
     }
 }
