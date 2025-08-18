@@ -52,6 +52,14 @@ public class Main {
         return new Result(aNumber, startTime, endTime);
     }
 
+    public static Result createAnObjNewJavaTimeAPIMinusNano(int aNumber, int aYear, int aMonth) {
+        YearMonth yearMonth = YearMonth.of(aYear, aMonth);
+        long startTime = yearMonth.atDay(1).atStartOfDay(ZoneId.systemDefault()).minusNanos(1).toInstant().toEpochMilli();
+        long endTime = yearMonth.plusMonths(1).atDay(1).atStartOfDay(ZoneId.systemDefault()).minusNanos(1).toInstant().toEpochMilli();
+
+        return new Result(aNumber, startTime, endTime);
+    }
+
 
     public record Result(int number, long startTime, long endtime) {}
     public record StartEndTimePair(long startTime, long endTime) {}
